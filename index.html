@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原生風格 M4A 音樂播放器</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 自訂樣式 -->
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* 防止出現卷軸 */
+        }
+
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container-fluid {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #mainContent {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        #albumInfo {
+            overflow-y: auto;
+            /* 允許在區塊內滾動 */
+            flex-shrink: 0;
+        }
+
+        #albumCover {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #albumCoverContainer {
+            max-height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #audioPlayerContainer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #343a40;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        #audioPlayer {
+            width: 100%;
+        }
+
+        .track-item:hover {
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            #mainContent {
+                flex-direction: row;
+            }
+
+            #albumInfo {
+                width: 30%;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                border-right: 1px solid #ddd;
+            }
+
+            #albumCoverContainer {
+                max-height: 500px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: auto;
+            }
+
+            #musicListContainer {
+                width: 70%;
+                padding: 20px;
+                overflow-y: auto;
+                /* 啟用滾動 */
+                max-height: calc(100vh - 80px);
+                /* 避免超出視窗高度 */
+            }
+
+            #albumSelect {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            h2,
+            h4 {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            #mainContent {
+                flex-direction: column;
+            }
+
+            #albumInfo {
+                padding: 10px;
+            }
+
+            #albumCover {
+                max-width: 200px;
+            }
+
+            #musicListContainer {
+                overflow-y: auto;
+                /* 啟用滾動 */
+                max-height: calc(100vh - 410px);
+                /* 避免超出視窗高度 */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <!-- 主內容區域 -->
+        <div id="mainContent">
+            <!-- 專輯資訊 -->
+            <div id="albumInfo" class="col-12 col-md-4 text-center">
+                <select id="albumSelect" class="form-select mb-2">
+                    <option value="">請選擇專輯</option>
+                </select>
+                <div id="albumCoverContainer" class="m-3">
+                    <img id="albumCover" src="" alt="專輯封面" style="display: none;">
+                </div>
+                <div class="m-3">
+                    <h3 id="albumTitle"></h3>
+                    <p id="albumSubtitle" class="text-muted"></p>
+                </div>
+            </div>
+
+            <!-- 音樂清單 -->
+            <div id="musicListContainer" class="col-12 col-md-8">
+                <ul id="musicList" class="list-group">
+                    <!-- 音樂曲目將動態生成 -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 固定底部播放器 -->
+    <div id="audioPlayerContainer" class="text-center">
+        <audio id="audioPlayer" controls>
+            您的瀏覽器不支援音樂播放。
+        </audio>
+    </div>
+
+    <!-- Bootstrap JS 和依賴 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 自訂 JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>

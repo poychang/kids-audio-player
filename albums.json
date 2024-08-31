@@ -1,0 +1,20 @@
+{
+    "album1": {
+        "name": "Album 1",
+        "subtitle": "subtitle 1",
+        "cover": "albums/album1/cover.png",
+        "tracks": [
+            { "name": "Track 1", "path": "albums/album1/track1.m4a" },
+            { "name": "Track 2", "path": "albums/album1/track2.m4a" }
+        ]
+    },
+    "album2": {
+        "name": "Album 2",
+        "subtitle": "subtitle 2",
+        "cover": "albums/album2/cover.jpg",
+        "tracks": [
+            { "name": "Track 3", "path": "albums/album2/track3.m4a" },
+            { "name": "Track 4", "path": "albums/album2/track4.m4a" }
+        ]
+    }
+}
