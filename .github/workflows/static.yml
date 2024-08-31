@@ -39,7 +39,7 @@ jobs:
           include:
             script.js
           placeholders: 
-            ./albums.json=${{albums_json}}
+            ./albums.json=${{secrets.albums_json}}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
