@@ -39,7 +39,7 @@ jobs:
           include:
             script.js
           placeholders: 
-            ./albums.json=https://poychangstorage.blob.core.windows.net/public/kids-audio-player/albums.json
+            ./albums.json=${{albums_json}}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
